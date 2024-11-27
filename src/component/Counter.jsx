@@ -1,20 +1,11 @@
-import { useState } from 'react';
-export const Counter = () => {
-    const [number, setNumber] = useState(0);
+import React from 'react';
 
-    const increase = () => {
-        setNumber(number + 1);
-    }
-    const decrease = () => {
-        setNumber(number - 1);
-    }
-
+export const Counter = ({ number, increase, decrease }) => {
     return (
         <div>
             <button onClick={increase}>+</button>
             {number}
             <button onClick={decrease}>-</button>
         </div>
-    )
-
-}
+    );
+};
