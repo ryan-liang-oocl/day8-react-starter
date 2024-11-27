@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import { Counter } from './Counter';
+import {CounterGroupSum} from "./CounterGroupSu";
 
 export const CounterGroup = ({ counterCount, reset, setReset }) => {
     const [counters, setCounters] = useState([]);
@@ -24,8 +25,11 @@ export const CounterGroup = ({ counterCount, reset, setReset }) => {
         setCounters(newCounters);
     };
 
+    const sum = useMemo(() => counters.reduce((acc, count) => acc + count, 0), [counters]);
+
     return (
         <div>
+            <CounterGroupSum sum={sum} />
             {counters.map((count, index) => (
                 <Counter
                     key={index}
