@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useMemo} from 'react';
 import { Counter } from './Counter';
-import {CounterGroupSum} from "./CounterGroupSu";
+import {CounterGroupSum} from "./CounterGroupSum";
 
 export const CounterGroup = ({ counterCount, reset, setReset }) => {
     const [counters, setCounters] = useState([]);
