@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import { parkCar } from '../service/ParkingLotService';
+import { parkCar, fetchCar } from '../service/ParkingLotService';
 
 const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
     const handlePark = () => {
@@ -14,10 +14,21 @@ const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
             });
     };
 
+    const handleFetch = () => {
+        fetchCar(plateNumber)
+            .then(response => {
+                console.log('Fetched successfully:', response.data);
+                onFetch();
+            })
+            .catch(error => {
+                console.error('Error fetching the car:', error);
+            });
+    };
+
     return (
         <div>
             <Button type="primary" onClick={handlePark} style={{ marginRight: '10px' }}>Park</Button>
-            <Button type="default" onClick={onFetch}>Fetch</Button>
+            <Button type="default" onClick={handleFetch}>Fetch</Button>
         </div>
     );
 };

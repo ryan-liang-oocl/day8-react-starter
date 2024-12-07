@@ -14,3 +14,9 @@ export const parkCar = (plateNumber, parkingBoyStrategy) => {
         parkingBoyStrategy
     });
 };
+
+export const fetchCar = (plateNumber) => {
+    return axiosInstance.post('/fetch', {
+        plateNumber
+    });
+};
