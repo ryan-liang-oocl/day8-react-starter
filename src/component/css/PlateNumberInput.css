@@ -1,0 +1,15 @@
+.plate-number-input {
+    margin-right: 10px;
+}
+
+.plate-number-label {
+    margin-right: 5px;
+}
+
+.plate-number-input-field {
+    width: 200px;
+}
+
+.error-message {
+    color: red;
+}
