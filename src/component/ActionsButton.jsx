@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, message } from 'antd';
 import { parkCar, fetchCar } from '../service/ParkingLotService';
+import './css/ActionsButton.css';
 
 const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
     const handlePark = () => {
@@ -24,9 +25,9 @@ const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
     };
 
     return (
-        <div>
-            <Button type="primary" onClick={handlePark} style={{ marginRight: '10px' }}>Park</Button>
-            <Button type="default" onClick={handleFetch}>Fetch</Button>
+        <div className="actions-button-container">
+            <Button type="primary" onClick={handlePark} className="action-button">Park</Button>
+            <Button type="default" onClick={handleFetch} className="action-button">Fetch</Button>
         </div>
     );
 };

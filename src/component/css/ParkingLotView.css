@@ -1,0 +1,25 @@
+.parking-lot-card {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.parking-lot-space:hover {
+    transform: scale(1.05);
+}
+
+.parking-lot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.parking-lot-space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1890ff;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f0f5ff;
+}

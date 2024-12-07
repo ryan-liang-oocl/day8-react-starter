@@ -1,14 +1,15 @@
 import React from 'react';
 import { Card } from 'antd';
+import './css/ParkingLotView.css';
 
 const ParkingLotView = ({ lot }) => {
     const spaces = Array.from({ length: lot.capacity }, (_, index) => lot.tickets[index] || 'Empty');
 
     return (
-        <Card title={lot.name}>
-            <div style={{ display: 'grid', gridTemplateColumns: `repeat(${lot.capacity === 9 ? 3 : 4}, 1fr)` }}>
+        <Card title={lot.name} className="parking-lot-card">
+            <div className="parking-lot-grid">
                 {spaces.map((space, index) => (
-                    <div key={index} style={{ border: '1px solid #ccc', padding: '10px', textAlign: 'center' }}>
+                    <div key={index} className="parking-lot-space">
                         {typeof space === 'string' ? space : `${space.plateNumber}`}
                     </div>
                 ))}
