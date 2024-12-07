@@ -1,23 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PlateNumberInput from './component/PlateNumberInput';
 import ParkingStrategySelector from './component/ParkingStrategySelector';
 import ParkingLotGroup from './component/ParkingLotGroup';
 import ActionsButton from './component/ActionsButton';
 import './App.css';
 import { Layout, message } from 'antd';
+import { getParkingLots } from './service/ParkingLotService';
 
 const { Header, Content } = Layout;
 
 const App = () => {
     const [plateNumber, setPlateNumber] = useState('');
     const [strategy, setStrategy] = useState('SequentiallyStrategy');
+    const [parkingLots, setParkingLots] = useState([]);
+
+    const fetchParkingLots = () => {
+        getParkingLots()
+            .then(response => {
+                setParkingLots(response.data);
+            })
+            .catch(error => {
+                message.error(`Error fetching parking lots: ${error.response.data}`);
+            });
+    };
+
+    useEffect(() => {
+        fetchParkingLots();
+    }, []);
 
     const handlePark = () => {
         message.success(`Park car: ${plateNumber} was successful`);
+        fetchParkingLots();
     };
 
     const handleFetch = () => {
         message.success(`Fetch car: ${plateNumber} was successful`);
+        fetchParkingLots();
     };
 
     return (
@@ -25,12 +43,11 @@ const App = () => {
             <Header className="layout-header">Parking Lot Management</Header>
             <Content className="layout-content">
                 <div className="flex-container">
-                    <PlateNumberInput value={plateNumber} onChange={e => setPlateNumber(e.target.value)}/>
-                    <ParkingStrategySelector value={strategy} onChange={e => setStrategy(e.target.value)}/>
-                    <ActionsButton plateNumber={plateNumber} strategy={strategy} onPark={handlePark}
-                                   onFetch={handleFetch}/>
+                    <PlateNumberInput value={plateNumber} onChange={e => setPlateNumber(e.target.value)} />
+                    <ParkingStrategySelector value={strategy} onChange={e => setStrategy(e.target.value)} />
+                    <ActionsButton plateNumber={plateNumber} strategy={strategy} onPark={handlePark} onFetch={handleFetch} />
                 </div>
-                <ParkingLotGroup />
+                <ParkingLotGroup parkingLots={parkingLots} />
             </Content>
         </Layout>
     );
