@@ -8,10 +8,10 @@ export const getParkingLots = () => {
     return axiosInstance.get('');
 };
 
-export const parkCar = (plateNumber, parkingBoyStrategy) => {
+export const parkCar = (plateNumber, parkingStrategy) => {
     return axiosInstance.post('/park', {
         plateNumber,
-        parkingBoyStrategy
+        parkingStrategy
     });
 };
 
