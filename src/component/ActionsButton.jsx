@@ -3,7 +3,7 @@ import { Button, message } from 'antd';
 import { parkCar, fetchCar } from '../service/ParkingLotService';
 import './css/ActionsButton.css';
 
-const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
+const ActionsButton = ({ plateNumber, strategy, onPark, onFetch, disabled }) => {
     const handlePark = () => {
         parkCar(plateNumber, strategy)
             .then(response => {
@@ -26,8 +26,8 @@ const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
 
     return (
         <div className="actions-button-container">
-            <Button type="primary" onClick={handlePark} className="action-button">Park</Button>
-            <Button type="default" onClick={handleFetch} className="action-button">Fetch</Button>
+            <Button type="primary" onClick={handlePark} className="action-button" disabled={disabled}>Park</Button>
+            <Button type="default" onClick={handleFetch} className="action-button" disabled={disabled}>Fetch</Button>
         </div>
     );
 };
