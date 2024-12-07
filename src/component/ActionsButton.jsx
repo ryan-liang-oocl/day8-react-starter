@@ -1,27 +1,25 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { parkCar, fetchCar } from '../service/ParkingLotService';
 
 const ActionsButton = ({ plateNumber, strategy, onPark, onFetch }) => {
     const handlePark = () => {
         parkCar(plateNumber, strategy)
             .then(response => {
-                console.log('Parked successfully:', response.data);
                 onPark();
             })
             .catch(error => {
-                console.error('Error parking the car:', error);
+                message.error(`Error parking the car: ${error.response.data}`);
             });
     };
 
     const handleFetch = () => {
         fetchCar(plateNumber)
             .then(response => {
-                console.log('Fetched successfully:', response.data);
                 onFetch();
             })
             .catch(error => {
-                console.error('Error fetching the car:', error);
+                message.error(`Error fetching the car: ${error.response.data}`);
             });
     };
 

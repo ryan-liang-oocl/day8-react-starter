@@ -4,7 +4,7 @@ import ParkingStrategySelector from './component/ParkingStrategySelector';
 import ParkingLotGroup from './component/ParkingLotGroup';
 import ActionsButton from './component/ActionsButton';
 import './App.css';
-import { Layout } from 'antd';
+import { Layout, message } from 'antd';
 
 const { Header, Content } = Layout;
 
@@ -13,21 +13,22 @@ const App = () => {
     const [strategy, setStrategy] = useState('SequentiallyStrategy');
 
     const handlePark = () => {
-        console.log(`Parking ${plateNumber} with ${strategy} strategy`);
+        message.success(`Park car: ${plateNumber} was successful`);
     };
 
     const handleFetch = () => {
-        console.log(`Fetching ${plateNumber} with ${strategy} strategy`);
+        message.success(`Fetch car: ${plateNumber} was successful`);
     };
 
     return (
         <Layout>
-            <Header style={{ color: 'white', textAlign: 'center' }}>Parking Lot Management</Header>
-            <Content style={{ padding: '20px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                    <PlateNumberInput value={plateNumber} onChange={e => setPlateNumber(e.target.value)} />
-                    <ParkingStrategySelector value={strategy} onChange={e => setStrategy(e.target.value)} />
-                    <ActionsButton plateNumber={plateNumber} strategy={strategy} onPark={handlePark} onFetch={handleFetch} />
+            <Header className="layout-header">Parking Lot Management</Header>
+            <Content className="layout-content">
+                <div className="flex-container">
+                    <PlateNumberInput value={plateNumber} onChange={e => setPlateNumber(e.target.value)}/>
+                    <ParkingStrategySelector value={strategy} onChange={e => setStrategy(e.target.value)}/>
+                    <ActionsButton plateNumber={plateNumber} strategy={strategy} onPark={handlePark}
+                                   onFetch={handleFetch}/>
                 </div>
                 <ParkingLotGroup />
             </Content>
