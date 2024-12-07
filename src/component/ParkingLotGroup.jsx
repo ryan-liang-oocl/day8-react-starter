@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ParkingLotView from './ParkingLotView';
 import { Row, Col } from 'antd';
-import ParkingLotService from "../service/ParkingLotService";
+import {getParkingLots} from "../service/ParkingLotService";
 
 const ParkingLotGroup = () => {
     const [parkingLots, setParkingLots] = useState([]);
 
     useEffect(() => {
-        ParkingLotService.getParkingLots().then(response => {
+        getParkingLots().then(response => {
             setParkingLots(response.data);
         }).catch(error => {
             console.error('Error fetching parking lots:', error);

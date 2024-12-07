@@ -9,7 +9,7 @@ const ParkingLotView = ({ lot }) => {
             <div style={{ display: 'grid', gridTemplateColumns: `repeat(${lot.capacity === 9 ? 3 : 4}, 1fr)` }}>
                 {spaces.map((space, index) => (
                     <div key={index} style={{ border: '1px solid #ccc', padding: '10px', textAlign: 'center' }}>
-                        {space}
+                        {typeof space === 'string' ? space : `${space.plateNumber}`}
                     </div>
                 ))}
             </div>
